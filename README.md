@@ -1,4 +1,4 @@
-<img width="269" height="119" alt="image" src="https://github.com/user-attachments/assets/ef7091c8-c7b7-4109-b2a5-ae066145175d" />Завдання 1
+Завдання 1
 
 У першому завданні необхідно запустити веб сервер на порту 8000 у Python.
 ```python
