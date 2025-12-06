@@ -47,3 +47,36 @@ if __name__ == "__main__":
 ```
 
 <img width="269" height="119" alt="image" src="https://github.com/user-attachments/assets/e19c47f3-1297-414c-9348-194a99e76262" />
+
+Завдання 4
+
+У четвертому завданні потрібно повернути різні типи даних в залежності від заголовку Content-Type.
+Сервер має видати JSON, XML або звичайний текст.
+
+```python
+from flask import Flask, request, jsonify
+app = Flask(__name__)
+
+@app.get("/")
+@app.get("/info")
+def info():
+    ctype = request.headers.get("Content-Type")
+
+    match ctype:
+        case "application/json":
+            return jsonify({"message": "JSON response"})
+
+        case "application/xml":
+            xml = "<response><message>XML response</message></response>"
+            return app.response_class(xml, mimetype="application/xml")
+
+        case _:
+            return "lb2"
+
+if __name__ == "__main__":
+    app.run(port=8000)
+
+```
+
+<img width="277" height="138" alt="image" src="https://github.com/user-attachments/assets/ad4c2098-8f62-488d-ad06-9cd39b848272" />
+
