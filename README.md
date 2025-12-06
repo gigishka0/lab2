@@ -80,3 +80,37 @@ if __name__ == "__main__":
 
 <img width="277" height="138" alt="image" src="https://github.com/user-attachments/assets/ad4c2098-8f62-488d-ad06-9cd39b848272" />
 
+Завдання 5
+
+Завдання 5
+
+У п’ятому завданні потрібно обробити метод GET зі шляхом /currency та параметром today або yesterday.
+Сервер має повертати курс USD, отриманий динамічно з API НБУ.
+
+```python
+from flask import Flask, request
+import requests
+from datetime import datetime, timedelta
+
+app = Flask(__name__)
+
+@app.get('/currency')
+def currency():
+
+    date = datetime.now()
+    if "yesterday" in request.args:
+        date -= timedelta(days=1)
+
+    d = date.strftime("%Y%m%d")
+
+    url = f"https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=EUR&date={d}&json"
+    rate = requests.get(url).json()[0]["rate"]
+
+    return f"EUR: {rate}"
+
+if __name__ == "__main__":
+    app.run(port=8000)
+
+```
+
+<img width="270" height="153" alt="image" src="https://github.com/user-attachments/assets/019af3b8-3107-4017-90cb-083c8ce8a9ce" />
